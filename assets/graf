@@ -1,68 +1,26 @@
-<div style="font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; color: white;">
-  
-  <!-- Status Header -->
-  <div style="text-align: center; margin-bottom: 20px;">
-    {{#if (eq A 8)}}
-      <h1 style="margin: 0; font-size: 2.5em;">🟢 SYSTEM OPERATIONAL</h1>
-      <p style="font-size: 1.2em; margin: 5px 0;">Alle Services verfügbar</p>
-    {{else if (gt C 2)}}
-      <h1 style="margin: 0; font-size: 2.5em; color: #ff6b6b;">🔴 SYSTEM DEGRADED</h1>
-      <p style="font-size: 1.2em; margin: 5px 0;">Mehrere Services ausgefallen</p>
-    {{else}}
-      <h1 style="margin: 0; font-size: 2.5em; color: #ffa726;">🟡 PARTIAL OUTAGE</h1>
-      <p style="font-size: 1.2em; margin: 5px 0;">Einige Services betroffen</p>
-    {{/if}}
-  </div>
+# 🚀 Service Monitoring Dashboard - Management Übersicht
 
-  <!-- Key Metrics Grid -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
-    
-    <!-- Services Status -->
-    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; text-align: center;">
-      <div style="font-size: 2em; font-weight: bold;">${A}/${B}</div>
-      <div>Services Online</div>
-    </div>
-    
-    <!-- Uptime -->
-    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; text-align: center;">
-      <div style="font-size: 2em; font-weight: bold;">${D:%.1f}%</div>
-      <div>Verfügbarkeit</div>
-    </div>
-    
-    <!-- Response Time -->
-    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; text-align: center;">
-      <div style="font-size: 2em; font-weight: bold;">${E:%.0f}ms</div>
-      <div>Antwortzeit</div>
-    </div>
-    
-    <!-- Incidents -->
-    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; text-align: center;">
-      <div style="font-size: 2em; font-weight: bold;">${C}</div>
-      <div>Ausfälle</div>
-    </div>
-    
-  </div>
+## **Was Sie sehen:**
 
-  <!-- Conditional Messages -->
-  <div style="margin-top: 20px; font-size: 1.1em;">
-    {{#if (eq C 0)}}
-      ✅ <strong>Keine aktiven Störungen</strong><br>
-      ✅ <strong>SLA-Ziel erreicht</strong> (Ziel: >99%)<br>
-      {{#if (lt E 200)}}
-        ✅ <strong>Performance optimal</strong> (Ziel: <200ms)
-      {{else}}
-        ⚠️ <strong>Performance degradiert</strong> (${E:%.0f}ms > 200ms Ziel)
-      {{/if}}
-    {{else}}
-      🚨 <strong>${C} Service(s) ausgefallen</strong><br>
-      ⚠️ <strong>SLA gefährdet</strong><br>
-      📞 <strong>Incident Team benachrichtigt</strong>
-    {{/if}}
-  </div>
+### **Service-Verfügbarkeit**
+- ✅ **>95%**: Alles OK
+- 🟡 **90-95%**: Beobachtung nötig  
+- 🔴 **<90%**: Sofortiges Handeln
 
-  <!-- Footer -->
-  <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.8; text-align: center;">
-    Letzte Aktualisierung: ${__to:date:HH:mm:ss} | Auto-Refresh: 30s
-  </div>
+### **Fehler-Impact**
+- **"X von 6 Services betroffen"** → Anzahl Services mit Problemen
+- **Timeline** → Wann traten Probleme auf?
+- **Detail-Tabelle** → Welcher Service, wie kritisch?
 
-</div>
+## **🚨 Wann handeln:**
+
+### **Sofort (Major Incident):**
+- ≥4 Services betroffen
+- Fehlerrate >25% 
+- Payment/Auth-Services down
+
+### **Team informieren (30min):**
+- 1-2 Services betroffen
+- Fehlerrate 5-25%
+
+*Dashboard aktualisiert sich alle 30 Sekunden*
